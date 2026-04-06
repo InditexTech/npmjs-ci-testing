@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Improve publish workflow: pin actions to SHA, fix asdf cache, add OIDC/NPM_TOKEN dual publish strategy
+
 ## [3.6.0] - 2026-03-12
 
 ### Changed
