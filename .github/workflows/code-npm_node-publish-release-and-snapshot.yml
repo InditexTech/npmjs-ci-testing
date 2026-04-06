@@ -120,6 +120,8 @@ jobs:
         run: |
           echo "$HOME/.asdf/bin" >> "$GITHUB_PATH"
           echo "$HOME/.asdf/shims" >> "$GITHUB_PATH"
+          export PATH="$HOME/.asdf/bin:$HOME/.asdf/shims:$PATH"
+          cp code/.tool-versions "$HOME/.tool-versions"
 
       - name: NPM / Set npmrc registry
         env:
@@ -194,12 +196,46 @@ jobs:
           node --version
           npm --version
 
-      - name: NPM / Publish Snapshot - Distribution Platform
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_CONFIG_PROVENANCE: "false"
+      - name: NPM / Verify packages exist in registry
+        id: verify-packages
         working-directory: code
         run: |
+          MISSING=()
+          for pkg_dir in packages/*/; do
+            PKG_NAME=$(node -p "require('./$pkg_dir/package.json').name")
+            HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+              "https://registry.npmjs.org/${PKG_NAME}")
+            if [[ "$HTTP_STATUS" == "200" ]]; then
+              echo "✓ $PKG_NAME exists in registry"
+            else
+              echo "✗ $PKG_NAME NOT found in registry (HTTP $HTTP_STATUS)"
+              MISSING+=("$PKG_NAME")
+            fi
+          done
+          if [[ ${#MISSING[@]} -gt 0 ]]; then
+            echo "MISSING_PACKAGES=${MISSING[*]}" >> "$GITHUB_ENV"
+            echo "HAS_NEW_PACKAGES=true" >> "$GITHUB_ENV"
+            echo "::warning::New packages detected: ${MISSING[*]} — will use NPM_TOKEN instead of OIDC"
+          else
+            echo "HAS_NEW_PACKAGES=false" >> "$GITHUB_ENV"
+            echo "All packages verified in registry — OIDC publish is safe."
+          fi
+
+      - name: NPM / Publish Snapshot (OIDC + provenance)
+        if: env.HAS_NEW_PACKAGES == 'false'
+        env:
+          NPM_CONFIG_PROVENANCE: "true"
+        working-directory: code
+        run: |
+          npm run publish:snapshot
+
+      - name: NPM / Publish Snapshot (NPM_TOKEN for new packages)
+        if: env.HAS_NEW_PACKAGES == 'true'
+        env:
+          NPM_AUTH: ${{ secrets.NPM_TOKEN }}
+        working-directory: code
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NPM_AUTH}" >> ~/.npmrc
           npm run publish:snapshot
 
       - name: Result / Comment on PR
@@ -208,13 +244,17 @@ jobs:
         with:
           script: |
             const status = '${{ job.status }}';
+            const authMethod = '${{ env.HAS_NEW_PACKAGES }}' === 'true'
+              ? 'NPM_TOKEN (new packages detected)'
+              : 'OIDC trusted publishing (provenance)';
 
             const body = status === 'success'
               ? [
                   "### :rocket: NPM snapshot published",
                   "",
                   `- Version: \`${process.env.SNAPSHOT_VERSION}\``,
-                  "- Tag: `next`"
+                  "- Tag: `next`",
+                  `- Auth: ${authMethod}`
                 ]
               : [
                   "### :x: NPM snapshot publication failed",
@@ -328,6 +368,8 @@ jobs:
         run: |
           echo "$HOME/.asdf/bin" >> "$GITHUB_PATH"
           echo "$HOME/.asdf/shims" >> "$GITHUB_PATH"
+          export PATH="$HOME/.asdf/bin:$HOME/.asdf/shims:$PATH"
+          cp code/.tool-versions "$HOME/.tool-versions"
 
       - name: NPM / Set npmrc registry
         env:
@@ -423,12 +465,47 @@ jobs:
           node --version
           npm --version
 
-      - name: NPM / Release Perform - Distribution Platform
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_CONFIG_PROVENANCE: "false"
+      - name: NPM / Verify packages exist in registry
+        id: verify-packages
         working-directory: code
         run: |
+          MISSING=()
+          for pkg_dir in packages/*/; do
+            PKG_NAME=$(node -p "require('./$pkg_dir/package.json').name")
+            HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+              "https://registry.npmjs.org/${PKG_NAME}")
+            if [[ "$HTTP_STATUS" == "200" ]]; then
+              echo "✓ $PKG_NAME exists in registry"
+            else
+              echo "✗ $PKG_NAME NOT found in registry (HTTP $HTTP_STATUS)"
+              MISSING+=("$PKG_NAME")
+            fi
+          done
+          if [[ ${#MISSING[@]} -gt 0 ]]; then
+            echo "MISSING_PACKAGES=${MISSING[*]}" >> "$GITHUB_ENV"
+            echo "HAS_NEW_PACKAGES=true" >> "$GITHUB_ENV"
+            echo "::warning::New packages detected: ${MISSING[*]} — will use NPM_TOKEN instead of OIDC"
+          else
+            echo "HAS_NEW_PACKAGES=false" >> "$GITHUB_ENV"
+            echo "All packages verified in registry — OIDC publish is safe."
+          fi
+
+      - name: NPM / Release Perform (OIDC + provenance)
+        if: env.HAS_NEW_PACKAGES == 'false'
+        env:
+          NPM_CONFIG_PROVENANCE: "true"
+        working-directory: code
+        run: |
+          set -o pipefail
+          npm run release:perform 2>&1 | tee /tmp/release-perform.log
+
+      - name: NPM / Release Perform (NPM_TOKEN for new packages)
+        if: env.HAS_NEW_PACKAGES == 'true'
+        env:
+          NPM_AUTH: ${{ secrets.NPM_TOKEN }}
+        working-directory: code
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NPM_AUTH}" >> ~/.npmrc
           set -o pipefail
           npm run release:perform 2>&1 | tee /tmp/release-perform.log
 
