@@ -203,7 +203,8 @@ jobs:
           for pkg_dir in packages/*/; do
             PKG_NAME=$(node -p "require('./$pkg_dir/package.json').name")
             ENCODED_PKG_NAME=$(node -p "encodeURIComponent(process.argv[1])" "$PKG_NAME")
-            HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            RESPONSE_FILE=$(mktemp)
+            HTTP_STATUS=$(curl -s -o "$RESPONSE_FILE" -w "%{http_code}" \
               --connect-timeout 10 \
               --max-time 30 \
               --retry 3 \
@@ -212,10 +213,15 @@ jobs:
               "https://registry.npmjs.org/${ENCODED_PKG_NAME}")
             case "$HTTP_STATUS" in
               200)
-                echo "✓ $PKG_NAME exists in registry"
+                if node -e "const d=JSON.parse(require('fs').readFileSync(process.argv[1],'utf8')); process.exit(Object.keys(d.versions||{}).length > 0 ? 0 : 1)" "$RESPONSE_FILE"; then
+                  echo "✓ $PKG_NAME exists in registry with active versions"
+                else
+                  echo "✗ $PKG_NAME has no active versions (unpublished) — treating as new"
+                  MISSING+=("$PKG_NAME")
+                fi
                 ;;
               404)
-                echo "✗ $PKG_NAME NOT found in registry (HTTP $HTTP_STATUS)"
+                echo "✗ $PKG_NAME NOT found in registry"
                 MISSING+=("$PKG_NAME")
                 ;;
               429|5??)
@@ -227,6 +233,7 @@ jobs:
                 exit 1
                 ;;
             esac
+            rm -f "$RESPONSE_FILE"
           done
           if [[ ${#MISSING[@]} -gt 0 ]]; then
             echo "MISSING_PACKAGES=${MISSING[*]}" >> "$GITHUB_ENV"
@@ -491,7 +498,8 @@ jobs:
           for pkg_dir in packages/*/; do
             PKG_NAME=$(node -p "require('./$pkg_dir/package.json').name")
             ENCODED_PKG_NAME=$(node -p "encodeURIComponent(process.argv[1])" "$PKG_NAME")
-            HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            RESPONSE_FILE=$(mktemp)
+            HTTP_STATUS=$(curl -s -o "$RESPONSE_FILE" -w "%{http_code}" \
               --connect-timeout 10 \
               --max-time 30 \
               --retry 3 \
@@ -500,10 +508,15 @@ jobs:
               "https://registry.npmjs.org/${ENCODED_PKG_NAME}")
             case "$HTTP_STATUS" in
               200)
-                echo "✓ $PKG_NAME exists in registry"
+                if node -e "const d=JSON.parse(require('fs').readFileSync(process.argv[1],'utf8')); process.exit(Object.keys(d.versions||{}).length > 0 ? 0 : 1)" "$RESPONSE_FILE"; then
+                  echo "✓ $PKG_NAME exists in registry with active versions"
+                else
+                  echo "✗ $PKG_NAME has no active versions (unpublished) — treating as new"
+                  MISSING+=("$PKG_NAME")
+                fi
                 ;;
               404)
-                echo "✗ $PKG_NAME NOT found in registry (HTTP $HTTP_STATUS)"
+                echo "✗ $PKG_NAME NOT found in registry"
                 MISSING+=("$PKG_NAME")
                 ;;
               429|5??)
@@ -515,6 +528,7 @@ jobs:
                 exit 1
                 ;;
             esac
+            rm -f "$RESPONSE_FILE"
           done
           if [[ ${#MISSING[@]} -gt 0 ]]; then
             echo "MISSING_PACKAGES=${MISSING[*]}" >> "$GITHUB_ENV"
