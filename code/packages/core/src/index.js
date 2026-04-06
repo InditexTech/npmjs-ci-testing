@@ -9,3 +9,4 @@ export { name, version };
 export function hello() {
   return `Hello from ${name}@${version}`;
 }
+// test OIDC publish
