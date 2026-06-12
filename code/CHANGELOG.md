@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - chore: validate refined workflow 3
 
+
 ## [3.6.0] - 2026-03-12
 
 ### Changed
