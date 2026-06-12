@@ -1,1 +1,1 @@
-# npm-release-testing
+# npmjs-ci-testing

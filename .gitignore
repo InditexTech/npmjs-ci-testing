@@ -3,3 +3,6 @@ dist/
 .nx/
 code/verdaccio/storage/
 code/.npmrc
+code/coverage/
+.sonarcloud.properties
+.sonarqube/
