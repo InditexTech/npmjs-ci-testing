@@ -1,0 +1,14 @@
+code/CHANGELOG.md
+  h_3fa2067c00bbfd 12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "858fadde575b3d98c9bbba303dcf3cb2db97860e",
+  "prompts": {},
+  "humans": {
+    "h_3fa2067c00bbfd": {
+      "author": "Adria Berge Aguilar <adriaba@ext.inditex.com>"
+    }
+  }
+}
