@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- chore: validate refined workflow
+- chore: validate refined workflow 3
 
 ## [3.6.0] - 2026-03-12
 
