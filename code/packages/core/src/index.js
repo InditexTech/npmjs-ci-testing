@@ -7,5 +7,5 @@ console.log(`[${name}@${version}] loaded`);
 export { name, version };
 
 export function hello() {
-  return `Hello world from ${name}@${version}`;
+  return `Hello world 2 from ${name}@${version}`;
 }
