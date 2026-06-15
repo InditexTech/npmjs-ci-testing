@@ -9,7 +9,7 @@ concurrency:
 on:
   workflow_dispatch:
   pull_request:
-    types: [closed]
+    types: [opened, synchronize, reopened]
     branches: ['develop', 'develop-*', 'main', 'main-*']
     paths: ['code/**', '.github/workflows/code-*-sonarcloud-analysis.yml']
   release:
@@ -25,11 +25,10 @@ jobs:
     permissions:
       contents: read
     timeout-minutes: 30
-    if: ${{ ((github.event.pull_request.merged == true && (vars.DEVELOPMENT_FLOW != 'trunk-based-development' && (github.base_ref == 'develop' || startsWith(github.base_ref, 'develop-'))) ||
-        (vars.DEVELOPMENT_FLOW == 'trunk-based-development' && (github.base_ref == 'main' || startsWith(github.base_ref, 'main-')))) ||
+    if: ${{ (github.event_name == 'pull_request' ||
         github.event_name == 'workflow_dispatch' ||
-        github.event_name == 'release')
-        && vars.IS_INDITEXTECH_REPO == 'true' }}
+        github.event_name == 'release') &&
+        vars.IS_INDITEXTECH_REPO == 'true' }}
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
