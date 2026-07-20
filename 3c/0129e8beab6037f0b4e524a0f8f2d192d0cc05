@@ -1,0 +1,19 @@
+.github/actions/npm-publish-oidc/action.yml
+  s_5ae7cc5ec1921e::t_6a5fbd37691201 1-67
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "3c0129e8beab6037f0b4e524a0f8f2d192d0cc05",
+  "prompts": {},
+  "sessions": {
+    "s_5ae7cc5ec1921e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "920ef59f-262c-43bb-ae0d-34f64f74cbde",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Ivan Alvarez Sabin <ivanasabi@ext.inditex.com>"
+    }
+  }
+}
