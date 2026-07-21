@@ -1,0 +1,75 @@
+# SPDX-FileCopyrightText: 2026 INDUSTRIA DE DISEÑO TEXTIL S.A. (INDITEX S.A.)
+# SPDX-License-Identifier: Apache-2.0
+name: poc-oidc-composite
+on:
+  workflow_dispatch:
+  push:
+    branches: ["poc-composite-consumer"]
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  ASDF_BRANCH_VERSION: 0.18.0
+
+jobs:
+  publish-via-external-composite:
+    name: Publish snapshot via EXTERNAL composite action (OIDC)
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout consumer repo (the code to publish)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: NPM / Setup Dependencies Cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('code/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Restore asdf Cache
+        id: asdf-cache
+        uses: actions/cache/restore@v4
+        continue-on-error: true
+        with:
+          path: ~/.asdf
+          key: ${{ runner.os }}-asdf-${{ env.ASDF_BRANCH_VERSION }}-${{ hashFiles('code/.tool-versions') }}
+
+      - name: Save tool-versions content
+        run: |
+          {
+            echo "TOOL_VERSIONS<<EOF"
+            cat code/.tool-versions
+            echo "EOF"
+          } >> "$GITHUB_ENV"
+
+      - name: Setup asdf environment
+        uses: asdf-vm/actions/install@1902764435ca0dd2f3388eea723a4f92a4eb8302 # v4.0.0
+        if: steps.asdf-cache.outputs.cache-hit != 'true'
+        with:
+          tool_versions: ${{ env.TOOL_VERSIONS }}
+          asdf_version: ${{ env.ASDF_BRANCH_VERSION }}
+
+      - name: Restore asdf shims to PATH
+        if: steps.asdf-cache.outputs.cache-hit == 'true'
+        run: |
+          echo "$HOME/.asdf/bin" >> "$GITHUB_PATH"
+          echo "$HOME/.asdf/shims" >> "$GITHUB_PATH"
+          cp code/.tool-versions "$HOME/.tool-versions"
+
+      - name: Compute snapshot version
+        working-directory: code
+        run: |
+          set -euo pipefail
+          BASE=$(jq -r '.version' packages/core/package.json | sed -E 's/-.*$//')
+          echo "SNAPSHOT_VERSION=${BASE}-SNAPSHOT.${{ github.run_number }}.${{ github.run_attempt }}" >> "$GITHUB_ENV"
+
+      - name: Publish snapshot via EXTERNAL composite (@ref from host repo)
+        uses: InditexTech/maven-java-archetype-test/npm-publish-oidc@v1-poc-composite
+        with:
+          snapshot-version: ${{ env.SNAPSHOT_VERSION }}
