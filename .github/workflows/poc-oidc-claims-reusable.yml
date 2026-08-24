@@ -1,0 +1,52 @@
+# SPDX-License-Identifier: Apache-2.0
+# POC (throwaway): shared reusable that mints an OIDC token and prints the
+# non-secret claims that npm's trusted publisher would match against.
+# It does NOT publish anything. Two different entrypoints call this same file
+# so we can compare workflow_ref (top-level entrypoint) vs job_workflow_ref
+# (this reusable) across callers.
+name: poc-oidc-claims-reusable
+
+on:
+  workflow_call:
+    inputs:
+      caller:
+        type: string
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  claims:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Fetch and decode this run's OIDC claims (no publish, no token printed)
+        shell: bash
+        env:
+          CALLER: ${{ inputs.caller }}
+        run: |
+          set -euo pipefail
+          resp=$(curl -sS -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=npm:registry.npmjs.org")
+          token=$(printf '%s' "$resp" | python3 -c 'import sys,json;print(json.load(sys.stdin)["value"])')
+          export TOKEN="$token"
+          python3 - <<'PY'
+          import os, json, base64
+          tok = os.environ["TOKEN"]
+          payload = tok.split('.')[1]
+          payload += '=' * (-len(payload) % 4)
+          claims = json.loads(base64.urlsafe_b64decode(payload.encode()))
+          keys = ['workflow', 'workflow_ref', 'job_workflow_ref', 'job',
+                  'ref', 'sub', 'repository', 'environment', 'event_name']
+          view = {k: claims.get(k) for k in keys}
+          caller = os.environ["CALLER"]
+          print("CLAIMS_START " + caller)
+          print(json.dumps(view, indent=2, sort_keys=True))
+          print("CLAIMS_END " + caller)
+          print(f"NPM_MATCHES__workflow_ref = {view['workflow_ref']}")
+          print(f"reusable__job_workflow_ref = {view['job_workflow_ref']}")
+          PY

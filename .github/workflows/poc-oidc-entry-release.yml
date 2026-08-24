@@ -1,0 +1,20 @@
+# SPDX-License-Identifier: Apache-2.0
+# POC entrypoint #2 (simulates code-npm_node-release-publish.yml): a SECOND
+# distinct top-level workflow that publishes through the SAME shared reusable.
+name: poc-oidc-entry-release
+
+on:
+  push:
+    branches: [test/oidc-claims-poc]
+
+permissions:
+  contents: read
+
+jobs:
+  publish-like:
+    permissions:
+      contents: read
+      id-token: write
+    uses: ./.github/workflows/poc-oidc-claims-reusable.yml
+    with:
+      caller: release-entrypoint
