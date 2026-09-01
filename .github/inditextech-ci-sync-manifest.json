@@ -1,0 +1,53 @@
+{
+  "configuration": {
+    "development_flow": "git-flow",
+    "outputs": [
+      "publish"
+    ],
+    "parameters": {
+      "project_type": "workspaces",
+      "release": {
+        "packages": [
+          "@inditextech/release-test-core",
+          "@inditextech/release-test-utils"
+        ],
+        "strategy": "independent"
+      },
+      "working_directory": "code"
+    }
+  },
+  "creation_year": 2026,
+  "integrity": {
+    "algorithm": "hmac-sha256",
+    "signature": "bc5d76c8e71b4f32a8e772a377ea1c5813f2c1349b0971244716b8515daf4d5d"
+  },
+  "managed_by": "InditexTech CI governance",
+  "managed_paths": {
+    ".github/ISSUE_TEMPLATE/1-bug.yml": "cd4dad3f32fe707e06324790a2fe2c25829c55566de2b459d744e785b36e1205",
+    ".github/ISSUE_TEMPLATE/2-feature.yml": "ebb92730d6c01641d055f97ac094cbe07f88fac24be9b689ddf26e47e7bda863",
+    ".github/ISSUE_TEMPLATE/3-other.yml": "5a839b39a98704036210dee498146f51bd5a6c057228685680e02004ff063a9a",
+    ".github/ISSUE_TEMPLATE/config.yml": "10e5dee4d49aa9e7792ceb4c986160c61f95da1ba00a64bf06e5f1f636cd17ec",
+    ".github/PULL_REQUEST_TEMPLATE.md": "23a0b0ac79a9020ccac9c013582a01f86e2df2ae7f914673583b9a3368313041",
+    ".github/inditextech-ci-node.json": "96b4751c753113abba782d5c35efcb1115fbead51c9f26c1fb658957b3c3e230",
+    ".github/workflows/code-npm_node-PR_verify.yml": "5f28e0322d50f29a2ed15f8cf0d75b093ac253fd8dfc1599eec5b45e38a5f346",
+    ".github/workflows/code-npm_node-publish-release-and-snapshot.yml": "e1961288a59df5b29c6db5bb5cacb59ce3d7b8b1a0eb62f19a6315db93e5b7e2",
+    ".github/workflows/code-npm_node-release-core.yml": "695be8acde9719547cf5c6fa3fee59f9455f1d631040984412061ed33a126c2f",
+    ".github/workflows/code-npm_node-sonarcloud-analysis.yml": "dbc63f8073f519c6c086d0913e48337730da0a126dd0c1021e0c6a90809dc6f0",
+    ".github/workflows/code-release_preview.yml": "05926ae00816fd55aeb1bf39ce1fbce65396163003ff11df96b713727e10bfa6",
+    ".github/workflows/codeql.yml": "4117798c4b8142e0893bc047873f7fa5ee4ee5d187a438f501ef5bb5dd705318",
+    ".github/workflows/pr-verify.yml": "f52295fbfe81578c0a6459d8b384be569933ac78d32fff370932a8dec6943e46",
+    ".github/workflows/push-verify.yml": "217097070d0fdef329eae1a7187806a4623d692ce467ca8f1f9a7f56dddb29ed",
+    ".github/workflows/sync-to-develop.yml": "9eb4278deb6be51157152068ccd5f1ee91866943ae9225fb9d8512aaacc88708",
+    "CODE_OF_CONDUCT.md": "ce1e7a8f68a7917d48c03f9f7aae5529367f73af0e959276e889d33ea1e8d4ab",
+    "CONTRIBUTING.md": "4e1264ca54a45df44b362c7533f0eba912bfa77b6f561121ae9e5e9d6aa00df3",
+    "SECURITY.md": "0ee7a3356bc3a1c7649e3b7a6a9012b0608011be2b1ff8d106ad02c8950bab25",
+    "repolinter.json": "0efb305c47a63f03c488a34906fc2d5471c84145c2ff553f2aacf3a41b92e1a1"
+  },
+  "profile": "node",
+  "repository_id": 1114326582,
+  "schema_version": 2,
+  "source_digests": {
+    "base": "8af88664d64bb62e112d3039ad780df69cc04f0b3fb5090fd12c8e72d8dab553",
+    "node": "cbf74057d9548df44e108b868c41f2717b012e998716414ea0fcc68dbc45c107"
+  }
+}

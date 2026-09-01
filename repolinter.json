@@ -51,16 +51,6 @@
         }
       }
     },
-    "changelog-file-exists": {
-      "level": "error",
-      "rule": {
-        "type": "file-existence",
-        "options": {
-          "globsAny": ["code/CHANGELOG*"],
-          "nocase": true
-        }
-      }
-    },
     "security-file-exists": {
       "level": "error",
       "rule": {
@@ -70,18 +60,8 @@
         }
       }
     },
-    "support-file-exists": {
-      "level": "off",
-      "rule": {
-        "type": "file-existence",
-        "options": {
-          "globsAny": ["{docs/,.github/,}SUPPORT*"],
-          "nocase": true
-        }
-      }
-    },
     "readme-references-license": {
-      "level": "off",
+      "level": "error",
       "rule": {
         "type": "file-contents",
         "options": {
@@ -100,38 +80,19 @@
         }
       }
     },
-    "test-directory-exists": {
-      "level": "off",
-      "rule": {
-        "type": "directory-existence",
-        "options": {
-          "globsAny": ["/test", "/specs"],
-          "nocase": true
-        }
-      }
-    },
     "integrates-with-ci": {
       "level": "error",
       "rule": {
         "type": "file-existence",
         "options": {
           "globsAny": [
-            ".gitlab-ci.yml",
-            ".travis.yml",
-            "appveyor.yml",
-            ".appveyor.yml",
-            "circle.yml",
-            ".circleci/config.yml",
-            "Jenkinsfile",
-            ".drone.yml",
-            ".github/workflows/",
-            "azure-pipelines.yml"
+            ".github/workflows/"
           ]
         }
       }
     },
     "code-of-conduct-file-contains-email": {
-      "level": "off",
+      "level": "error",
       "rule": {
         "type": "file-contents",
         "options": {
@@ -149,18 +110,6 @@
         }
       }
     },
-    "source-license-headers-exist": {
-      "level": "warning",
-      "rule": {
-        "type": "file-starts-with",
-        "options": {
-          "globsAll": ["./**/*.ts", "./**/*.tsx"],
-          "lineCount": 5,
-          "patterns": ["Copyright", "License"],
-          "flags": "i"
-        }
-      }
-    },
     "github-issue-template-exists": {
       "level": "error",
       "rule": {
@@ -172,7 +121,7 @@
       }
     },
     "github-pull-request-template-exists": {
-      "level": "off",
+      "level": "error",
       "rule": {
         "type": "file-existence",
         "options": {
@@ -190,8 +139,90 @@
       "rule": {
         "type": "file-existence",
         "options": {
-          "globsAny": ["package.json"]
+          "globsAny": ["{,**/}package.json"]
         }
+      }
+    },
+    "ruby-package-metadata-exists": {
+      "level": "error",
+      "where": ["language=ruby"],
+      "rule": {
+        "type": "file-existence",
+        "options": {
+          "globsAny": ["Gemfile"]
+        }
+      }
+    },
+    "java-package-metadata-exists": {
+      "level": "error",
+      "where": ["language=java"],
+      "rule": {
+        "type": "file-existence",
+        "options": {
+          "globsAny": ["{,**/}pom.xml", "{,**/}build.xml", "{,**/}build.gradle"]
+        }
+      }
+    },
+    "python-package-metadata-exists": {
+      "level": "error",
+      "where": ["language=python"],
+      "rule": {
+        "type": "file-existence",
+        "options": {
+          "globsAny": [
+            "{,**/}setup.py",
+            "{,**/}requirements.txt",
+            "{,**/}pyproject.toml"
+          ]
+        }
+      }
+    },
+    "objective-c-package-metadata-exists": {
+      "level": "error",
+      "where": ["language=objective-c"],
+      "rule": {
+        "type": "file-existence",
+        "options": {
+          "globsAny": ["Cartfile", "Podfile", ".podspec"]
+        }
+      }
+    },
+    "swift-package-metadata-exists": {
+      "level": "error",
+      "where": ["language=swift"],
+      "rule": {
+        "type": "file-existence",
+        "options": {
+          "globsAny": ["Package.swift"]
+        }
+      }
+    },
+    "erlang-package-metadata-exists": {
+      "level": "error",
+      "where": ["language=erlang"],
+      "rule": {
+        "type": "file-existence",
+        "options": {
+          "globsAny": ["rebar.config"]
+        }
+      }
+    },
+    "elixir-package-metadata-exists": {
+      "level": "error",
+      "where": ["language=elixir"],
+      "rule": {
+        "type": "file-existence",
+        "options": {
+          "globsAny": ["mix.exs"]
+        }
+      }
+    },
+    "license-detectable-by-licensee": {
+      "level": "error",
+      "where": ["license="],
+      "rule": {
+        "type": "license-detectable-by-licensee",
+        "options": {}
       }
     },
     "notice-file-exists": {
@@ -205,14 +236,8 @@
         }
       }
     },
-    "best-practices-badge-present": {
-      "level": "off",
-      "rule": {
-        "type": "best-practices-badge-present"
-      }
-    },
     "internal-file-not-exists": {
-      "level": "off",
+      "level": "error",
       "rule": {
         "type": "file-not-exists",
         "options": {
