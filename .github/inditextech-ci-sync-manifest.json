@@ -1,0 +1,37 @@
+{
+  "configuration": {
+    "development_flow": "trunk-based",
+    "outputs": [
+      "gh-release",
+      "publish"
+    ],
+    "parameters": {
+      "project_type": "single",
+      "working_directory": "code"
+    }
+  },
+  "creation_year": 2026,
+  "integrity": {
+    "algorithm": "hmac-sha256",
+    "signature": "c894c1b57a008de4533eb5b677c4294b1bb531dbb9adf35ff44851bbbae626bf"
+  },
+  "managed_by": "InditexTech CI governance",
+  "managed_paths": {
+    ".github/ISSUE_TEMPLATE/1-bug.yml": "cd4dad3f32fe707e06324790a2fe2c25829c55566de2b459d744e785b36e1205",
+    ".github/ISSUE_TEMPLATE/2-feature.yml": "ebb92730d6c01641d055f97ac094cbe07f88fac24be9b689ddf26e47e7bda863",
+    ".github/ISSUE_TEMPLATE/3-other.yml": "5a839b39a98704036210dee498146f51bd5a6c057228685680e02004ff063a9a",
+    ".github/ISSUE_TEMPLATE/config.yml": "10e5dee4d49aa9e7792ceb4c986160c61f95da1ba00a64bf06e5f1f636cd17ec",
+    ".github/PULL_REQUEST_TEMPLATE.md": "23a0b0ac79a9020ccac9c013582a01f86e2df2ae7f914673583b9a3368313041",
+    ".github/inditextech-ci-node.json": "55e0eaabcab40c67b73d9d2324266f0d1fd9023fe1a89db63f5ecbd3ca1a3d85",
+    ".github/workflows/code-npm_node-release-core.yml": "695be8acde9719547cf5c6fa3fee59f9455f1d631040984412061ed33a126c2f",
+    ".github/workflows/pr-verify.yml": "f52295fbfe81578c0a6459d8b384be569933ac78d32fff370932a8dec6943e46",
+    ".github/workflows/push-verify.yml": "217097070d0fdef329eae1a7187806a4623d692ce467ca8f1f9a7f56dddb29ed"
+  },
+  "profile": "node",
+  "repository_id": 1114326582,
+  "schema_version": 2,
+  "source_digests": {
+    "base": "ba2bea33f454176cb48bc6e9514d0b40fd8cb1323f80972e3c9e8594d7bb82ae",
+    "node": "cbf74057d9548df44e108b868c41f2717b012e998716414ea0fcc68dbc45c107"
+  }
+}

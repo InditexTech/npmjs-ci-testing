@@ -1,0 +1,11 @@
+# One normalized relative path per line. Lines in this file are not reconciled by InditexTech CI governance.
+.github/workflows/code-npm_node-PR_verify.yml
+.github/workflows/code-npm_node-publish-release-and-snapshot.yml
+.github/workflows/code-npm_node-sonarcloud-analysis.yml
+.github/workflows/code-release_preview.yml
+.github/workflows/codeql.yml
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+SECURITY.md
+code/.tool-versions
+repolinter.json
