@@ -333,6 +333,42 @@ jobs:
               set_version "$(jq -r '.[0].version' <<< "$releases")" ""
             fi
 
+            # BUGFIX (Bug 2): `npm pkg set version=` bumps only each member's own
+            # .version. For a workspace whose published members cross-depend, the
+            # sibling dependency specs and the lockfile are left at the old
+            # (-SNAPSHOT) version, so the engine's own hermetic `npm ci && npm run
+            # build` later fails ETARGET/notarget. Reconcile every sibling spec that
+            # references a bumped member to the new version, then regenerate the
+            # lockfile, before staging the release commit.
+            if [[ "$PROJECT_TYPE" == "workspaces" ]]; then
+              declare -A member_version=()
+              while IFS= read -r record; do
+                rv="$(jq -r '.version' <<< "$record")"
+                while IFS= read -r mdir; do
+                  mname="$(jq -r '.name' "packages/$mdir/package.json")"
+                  member_version["$mname"]="$rv"
+                done < <(jq -r '.packages[]' <<< "$record")
+              done < <(jq -c '.[]' <<< "$releases")
+
+              while IFS= read -r member; do
+                pj="packages/$member/package.json"
+                for field in dependencies devDependencies peerDependencies optionalDependencies; do
+                  while IFS= read -r dep; do
+                    new="${member_version[$dep]:-}"
+                    [[ -n "$new" ]] || continue
+                    cur="$(jq -r --arg f "$field" --arg d "$dep" '.[$f][$d]' "$pj")"
+                    [[ "$cur" =~ [0-9] ]] || continue
+                    pre="$(printf '%s' "$cur" | sed -E 's/^([^0-9]*).*/\1/')"
+                    tmp="$(mktemp)"
+                    jq --arg f "$field" --arg d "$dep" --arg v "${pre}${new}" \
+                       '.[$f][$d] = $v' "$pj" > "$tmp" && mv "$tmp" "$pj"
+                  done < <(jq -r --arg f "$field" '(.[$f] // {}) | keys[]' "$pj")
+                done
+              done < "$members_file"
+
+              npm install --package-lock-only --ignore-scripts
+            fi
+
             while IFS= read -r tag; do
               if git show-ref --tags --verify --quiet "refs/tags/$tag"; then
                 echo "::error title=Tag conflict::$tag already exists."

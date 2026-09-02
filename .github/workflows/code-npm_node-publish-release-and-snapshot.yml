@@ -305,7 +305,13 @@ jobs:
     # Deploy is gated on the descriptor snapshot opt-in (belt-and-suspenders with the
     # Plan step's should_publish, which already encodes it): the credential-bearing
     # npm-snapshot deploy never runs unless publish_snapshot is explicitly enabled.
-    if: needs.build.outputs.should_publish == 'true' && vars.PUBLISH_SNAPSHOT == 'true'
+    # BUGFIX (Bug 1): the leading !cancelled() is REQUIRED. Without a status function
+    # this job inherits the transitive skip of `authorize` (skipped on the push lane),
+    # so on push->develop the snapshot never publishes even though should_publish=true.
+    if: >-
+      !cancelled() &&
+      needs.build.outputs.should_publish == 'true' &&
+      vars.PUBLISH_SNAPSHOT == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     environment: npm-snapshot
