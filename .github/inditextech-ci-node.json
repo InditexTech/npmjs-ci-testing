@@ -1,0 +1,12 @@
+{
+  "project_type": "workspaces",
+  "release": {
+    "packages": [
+      "@inditextech/release-test-core",
+      "@inditextech/release-test-utils"
+    ],
+    "strategy": "independent"
+  },
+  "schema_version": 1,
+  "working_directory": "code"
+}
