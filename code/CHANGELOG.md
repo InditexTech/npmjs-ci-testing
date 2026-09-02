@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - chore: validate refined workflow 2
+- chore: exercise PR-scoped snapshot publish lane
 
 ## [3.6.0] - 2026-03-12
 
@@ -75,26 +76,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[Unreleased]: https://github.com/InditexTech/npm-release-testing/compare/3.6.0...HEAD
+[Unreleased]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.6.0...HEAD
 
-[3.6.0]: https://github.com/InditexTech/npm-release-testing/compare/3.5.0...3.6.0
+[3.6.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.5.0...3.6.0
 
-[3.5.0]: https://github.com/InditexTech/npm-release-testing/compare/3.4.0...3.5.0
+[3.5.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.4.0...3.5.0
 
-[3.4.0]: https://github.com/InditexTech/npm-release-testing/compare/3.3.0...3.4.0
+[3.4.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.3.0...3.4.0
 
-[3.3.0]: https://github.com/InditexTech/npm-release-testing/compare/3.2.0...3.3.0
+[3.3.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.2.0...3.3.0
 
-[3.2.0]: https://github.com/InditexTech/npm-release-testing/compare/3.1.0...3.2.0
+[3.2.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.1.0...3.2.0
 
-[3.1.0]: https://github.com/InditexTech/npm-release-testing/compare/3.0.0...3.1.0
+[3.1.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.0.0...3.1.0
 
-[3.0.0]: https://github.com/InditexTech/npm-release-testing/compare/2.0.2...3.0.0
+[3.0.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/2.0.2...3.0.0
 
-[2.0.2]: https://github.com/InditexTech/npm-release-testing/compare/2.0.1...2.0.2
+[2.0.2]: https://github.com/InditexTech/npmjs-ci-testing/compare/2.0.1...2.0.2
 
-[2.0.1]: https://github.com/InditexTech/npm-release-testing/compare/2.0.0...2.0.1
+[2.0.1]: https://github.com/InditexTech/npmjs-ci-testing/compare/2.0.0...2.0.1
 
-[2.0.0]: https://github.com/InditexTech/npm-release-testing/compare/1.0.0...2.0.0
+[2.0.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/1.0.0...2.0.0
 
-[1.0.0]: https://github.com/InditexTech/npm-release-testing/releases/tag/1.0.0
+[1.0.0]: https://github.com/InditexTech/npmjs-ci-testing/releases/tag/1.0.0

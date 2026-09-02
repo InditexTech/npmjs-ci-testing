@@ -28,7 +28,7 @@
     "@inditextech/release-test-core": "3.7.0-SNAPSHOT"
   },
   "repository": {
-    "url": "git+https://github.com/InditexTech/npm-release-testing.git"
+    "url": "git+https://github.com/InditexTech/npmjs-ci-testing.git"
   },
   "engines": {
     "node": ">=18.12.0",

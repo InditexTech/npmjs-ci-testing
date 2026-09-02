@@ -27,5 +27,5 @@
     "node": ">= 22.0.0",
     "npm": ">= 10.2.4"
   },
-  "repository": "github:InditexTech/npm-release-testing"
+  "repository": "github:InditexTech/npmjs-ci-testing"
 }
