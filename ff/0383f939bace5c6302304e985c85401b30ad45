@@ -1,0 +1,20 @@
+code/CHANGELOG.md
+  h_e3804906c674bd 79,81,83,85,87,89,91,93,95,97,99,101
+code/package.json
+  h_e3804906c674bd 30
+code/packages/release-test-core/package.json
+  h_e3804906c674bd 28
+code/packages/release-test-utils/package.json
+  h_e3804906c674bd 31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "ff0383f939bace5c6302304e985c85401b30ad45",
+  "prompts": {},
+  "humans": {
+    "h_e3804906c674bd": {
+      "author": "Ivan Alvarez Sabin <ivanasabi@ext.inditex.com>"
+    }
+  }
+}
