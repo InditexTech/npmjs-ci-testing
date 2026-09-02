@@ -1,0 +1,19 @@
+.ci-bug1-retest.txt
+  s_c1efc9a8f82dbb::t_672d78faa5a3a1 1-2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "d8e595293da320126406de3333df48a4e23c69f2",
+  "prompts": {},
+  "sessions": {
+    "s_c1efc9a8f82dbb": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "15ae5c45-bbba-41a1-ad0a-e336bfe783bc",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Ivan Alvarez Sabin <ivanasabi@ext.inditex.com>"
+    }
+  }
+}
