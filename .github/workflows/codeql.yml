@@ -101,13 +101,7 @@ jobs:
         with:
           build-mode: ${{ matrix.build-mode }}
           languages: ${{ matrix.language }}
-          # These three `actions` queries fire as false positives on the governed release/publish
-          # lanes: CodeQL scans reusable workflows conservatively, propagating a caller's
-          # issue_comment/workflow_dispatch triggers through `workflow_call` and unable to evaluate
-          # the job-level `if:` guards that gate the privileged jobs. Every flagged site is mitigated
-          # in-template — the release ref is validated as a 40-hex merge-commit SHA, the version bump
-          # is whitelisted from a fixed label set, and privileged jobs never build PR-head code — so
-          # the alerts are noise. Scoped to these rule IDs only; all other queries still run.
+          # These three `actions` queries are false positives on the governed lanes: CodeQL propagates a caller's issue_comment/workflow_dispatch triggers through `workflow_call` and cannot evaluate the job-level `if:` guards, yet every flagged site is mitigated in-template (40-hex merge-commit SHA validation, whitelisted bump labels, no PR-head code in privileged jobs); scoped to these rule IDs only.
           config: |
             query-filters:
               - exclude:

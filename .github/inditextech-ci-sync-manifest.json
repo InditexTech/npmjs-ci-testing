@@ -19,7 +19,7 @@
   "creation_year": 2026,
   "integrity": {
     "algorithm": "hmac-sha256",
-    "signature": "54043e211937a4bc9718ef3a342c70b15265fa0e8f0072bdd3ffb9b0ec988c80"
+    "signature": "5e1f2b1ac0ae10a1e58581cf1ac25dc79ddd15a21910a51defa4933feacda352"
   },
   "managed_by": "InditexTech CI governance",
   "managed_paths": {
@@ -29,12 +29,12 @@
     ".github/ISSUE_TEMPLATE/config.yml": "10e5dee4d49aa9e7792ceb4c986160c61f95da1ba00a64bf06e5f1f636cd17ec",
     ".github/PULL_REQUEST_TEMPLATE.md": "23a0b0ac79a9020ccac9c013582a01f86e2df2ae7f914673583b9a3368313041",
     ".github/inditextech-ci-node.json": "96b4751c753113abba782d5c35efcb1115fbead51c9f26c1fb658957b3c3e230",
-    ".github/workflows/code-npm_node-PR_verify.yml": "5f28e0322d50f29a2ed15f8cf0d75b093ac253fd8dfc1599eec5b45e38a5f346",
-    ".github/workflows/code-npm_node-publish-release-and-snapshot.yml": "e1961288a59df5b29c6db5bb5cacb59ce3d7b8b1a0eb62f19a6315db93e5b7e2",
-    ".github/workflows/code-npm_node-release-core.yml": "695be8acde9719547cf5c6fa3fee59f9455f1d631040984412061ed33a126c2f",
-    ".github/workflows/code-npm_node-sonarcloud-analysis.yml": "dbc63f8073f519c6c086d0913e48337730da0a126dd0c1021e0c6a90809dc6f0",
-    ".github/workflows/code-release_preview.yml": "05926ae00816fd55aeb1bf39ce1fbce65396163003ff11df96b713727e10bfa6",
-    ".github/workflows/codeql.yml": "e5dc11d46326a7ba6bade53bf04b609f390305f96644dd0292cfc53821429d46",
+    ".github/workflows/code-npm_node-PR_verify.yml": "29f72ba6e742fc56255f13d27ce650d6ccb2e184d9e2d9647e7c677220b90147",
+    ".github/workflows/code-npm_node-publish-release-and-snapshot.yml": "58b983b783aecbe835e7fad36f112ac8422dc0e83962cff32991001ebcc2d9ad",
+    ".github/workflows/code-npm_node-release-core.yml": "d4ec87242c201d99e0a12c42b7f17a0dda5d103759e1bea1620e7ed533232a5c",
+    ".github/workflows/code-npm_node-sonarcloud-analysis.yml": "8aedcf54db51ae185270ea059728c598caf1b14a5e19d4674180a4513821dd03",
+    ".github/workflows/code-release_preview.yml": "6222022149ea98df153afac623e1ecb5031f61607bcfda665058275e28c408f7",
+    ".github/workflows/codeql.yml": "301f1da228963e0586400b54ebdc7605e0a73c6443889cadc0fbde91869a52d6",
     ".github/workflows/pr-verify.yml": "f52295fbfe81578c0a6459d8b384be569933ac78d32fff370932a8dec6943e46",
     ".github/workflows/push-verify.yml": "217097070d0fdef329eae1a7187806a4623d692ce467ca8f1f9a7f56dddb29ed",
     ".github/workflows/sync-to-develop.yml": "9eb4278deb6be51157152068ccd5f1ee91866943ae9225fb9d8512aaacc88708",
@@ -48,6 +48,6 @@
   "schema_version": 2,
   "source_digests": {
     "base": "8af88664d64bb62e112d3039ad780df69cc04f0b3fb5090fd12c8e72d8dab553",
-    "node": "afca5ac7a405222979180c3bd4d5443bc6746ea8f6d2f583bb129b2199c8e96e"
+    "node": "f7151115162e66e928b2b690a5239bbb5c371eab2b2d6449cf019a787319969f"
   }
 }

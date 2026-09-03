@@ -43,8 +43,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Check CHANGELOG has Unreleased changes
-        # Skip for PRs that opt out of a release (skip-release label) and for the
-        # engine's automated reconcile PR, which never carries release content.
+        # Skip for PRs that opt out of a release (skip-release label) and for the engine's automated reconcile PR, which never carries release content.
         if: >-
           !contains(github.event.pull_request.labels.*.name, 'skip-release') &&
           github.event.pull_request.head.ref != 'automated/ci-governance-sync'
