@@ -1,0 +1,23 @@
+.github/workflows/code-npm_node-bootstrap-publish.yml
+  s_653759ea244b5d::t_3463ca1993c12c 107-112
+.github/workflows/docs-npm_node-publish.yml
+  s_653759ea244b5d::t_e3d74e45dab481 92-97
+.github/workflows/test-gpg-signing.yml
+  s_653759ea244b5d::t_55c5aaf7c26a23 27-37,112-114,117,119,122,124,127,129,132-144
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "35c3f00ed0d98bf1ccb1f7b270fcdd53c240f39e",
+  "prompts": {},
+  "sessions": {
+    "s_653759ea244b5d": {
+      "agent_id": {
+        "tool": "github-copilot",
+        "id": "s_653759ea244b5d",
+        "model": "unknown"
+      },
+      "human_author": "Ivan Alvarez Sabin <ivanasabi@ext.inditex.com>"
+    }
+  }
+}
