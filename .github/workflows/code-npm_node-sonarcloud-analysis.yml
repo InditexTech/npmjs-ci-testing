@@ -71,6 +71,7 @@ jobs:
           {
             echo "tool_versions<<EOF"
             cat .tool-versions
+            echo
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
 
@@ -133,6 +134,12 @@ jobs:
               exit 1
               ;;
           esac
+          for governed_value in "$sonar_sources" "$sonar_coverage"; do
+            if [[ "$governed_value" == *$'\n'* ]]; then
+              echo "::error title=Invalid Sonar scope::Resolved analysis paths must not contain newlines." >&2
+              exit 1
+            fi
+          done
           {
             echo "SONAR_SOURCES=${sonar_sources}"
             echo "SONAR_COVERAGE_PATHS=${sonar_coverage}"
