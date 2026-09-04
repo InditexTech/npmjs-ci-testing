@@ -23,6 +23,7 @@ permissions:
   contents: read
 
 env:
+  CI_GOVERNANCE_RELEASE_STAGING_REF: refs/ci-governance/release/${{ github.run_id }}-${{ github.run_attempt }}
   PROJECT_TYPE: ${{ vars.PROJECT_TYPE }}
   WORKING_DIRECTORY: ${{ vars.WORKING_DIRECTORY }}
   PACKAGE_MANAGER: ${{ vars.PACKAGE_MANAGER }}
@@ -42,6 +43,7 @@ jobs:
       (
         github.event_name == 'pull_request' &&
         github.event.pull_request.merged &&
+        github.event.pull_request.head.ref != 'automated/ci-governance-sync' &&
         !contains(join(github.event.pull_request.labels.*.name, ','), 'skip-release') &&
         (
           (vars.DEVELOPMENT_FLOW == 'trunk-based-development' && (github.event.pull_request.base.ref == 'main' || startsWith(github.event.pull_request.base.ref, 'main-'))) ||
@@ -57,6 +59,8 @@ jobs:
     outputs:
       release_commit: ${{ steps.release-metadata.outputs.release_commit }}
       releases: ${{ steps.release-metadata.outputs.releases }}
+      expected_ref: ${{ steps.release-plan.outputs.expected_ref }}
+      staging_ref: ${{ steps.release-metadata.outputs.staging_ref }}
     steps:
       - name: Resolve release context
         id: release-context
@@ -90,6 +94,19 @@ jobs:
             echo "release_labels=$release_labels"
             echo "release_ref=$release_ref"
           } >> "$GITHUB_OUTPUT"
+
+      - name: Enforce protected release branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASELINE_BRANCH: ${{ steps.release-context.outputs.baseline_branch }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          protected="$(gh api "repos/${GITHUB_REPOSITORY}/branches/${BASELINE_BRANCH}" --jq '.protected')"
+          if [[ "$protected" != "true" ]]; then
+            echo "::error title=Unprotected release branch::Releases require a protected baseline branch; '${BASELINE_BRANCH}' is not protected." >&2
+            exit 1
+          fi
 
       - name: Create GitHub App token
         id: app-token
@@ -438,7 +455,7 @@ jobs:
             rm -f "$tmp"
           fi
 
-      - name: Commit, tag and push release
+      - name: Commit and stage release
         if: vars.RELEASE_LIFECYCLE != 'delegated' && steps.release-plan.outputs.resume != 'true'
         id: release-commit
         env:
@@ -460,16 +477,12 @@ jobs:
           git config user.email "${APP_SLUG}[bot]@users.noreply.github.com"
           git commit -m "[node-release] Prepare release"
 
-          tag_refs=()
           while IFS= read -r record; do
-            tag="$(jq -r '.tag' <<< "$record")"
-            version="$(jq -r '.version' <<< "$record")"
-            git check-ref-format --allow-onelevel "refs/tags/$tag"
-            git tag -a "$tag" -m "Release $version"
-            tag_refs+=("refs/tags/$tag")
+            git check-ref-format --allow-onelevel "refs/tags/$(jq -r '.tag' <<< "$record")"
           done < <(jq -c '.[]' <<< "$RELEASES")
 
-          git push --atomic origin "HEAD:$EXPECTED_REF" "${tag_refs[@]}"
+          # Stage the commit on a non-branch ref: build needs it fetchable, main must not move yet.
+          git push --atomic --force origin "HEAD:$CI_GOVERNANCE_RELEASE_STAGING_REF"
 
       - name: Cut delegated release
         id: delegated-plan
@@ -643,6 +656,7 @@ jobs:
           set -euo pipefail
           {
             echo "release_commit=$(git -C "$GITHUB_WORKSPACE" rev-parse HEAD)"
+            echo "staging_ref=$CI_GOVERNANCE_RELEASE_STAGING_REF"
             echo "releases<<EOF"
             printf '%s\n' "$RELEASES"
             echo "EOF"
@@ -807,7 +821,55 @@ jobs:
           tool_versions: ${{ steps.tool-versions.outputs.tool_versions }}
           asdf_version: ${{ env.ASDF_BRANCH_VERSION }}
 
+      - name: Promote the release to the default branch
+        id: promote
+        if: vars.RELEASE_LIFECYCLE != 'delegated' && (needs.build-distributions.result == 'success' || needs.build-distributions.result == 'skipped')
+        env:
+          APP_SLUG: ${{ steps.app-token.outputs.app-slug }}
+          EXPECTED_REF: ${{ needs.prepare-release.outputs.expected_ref }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          RELEASES: ${{ needs.prepare-release.outputs.releases }}
+          RELEASE_COMMIT: ${{ needs.prepare-release.outputs.release_commit }}
+          STAGING_REF: ${{ needs.prepare-release.outputs.staging_ref }}
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh auth setup-git
+          git config user.name "${APP_SLUG}[bot]"
+          git config user.email "${APP_SLUG}[bot]@users.noreply.github.com"
+
+          git fetch --no-tags origin "+${STAGING_REF}:refs/ci-governance/staged" 2>/dev/null || true
+          if [[ "$(git ls-remote origin "$EXPECTED_REF" | cut -f1)" == "$RELEASE_COMMIT" ]]; then
+            echo "::notice title=Promotion skipped::$EXPECTED_REF already points at the release commit."
+            git checkout --force --detach "$RELEASE_COMMIT"
+            exit 0
+          fi
+
+          if [[ "$(git rev-parse --verify --quiet refs/ci-governance/staged || true)" != "$RELEASE_COMMIT" ]]; then
+            echo "::error title=Release staging mismatch::$STAGING_REF does not point at the release commit."
+            exit 1
+          fi
+          git checkout --force --detach "$RELEASE_COMMIT"
+
+          tag_refs=()
+          while IFS= read -r record; do
+            tag="$(jq -r '.tag' <<< "$record")"
+            version="$(jq -r '.version' <<< "$record")"
+            git check-ref-format --allow-onelevel "refs/tags/$tag"
+            if git ls-remote --exit-code --tags origin "refs/tags/$tag" >/dev/null 2>&1; then
+              echo "::error title=Tag conflict::$tag already exists."
+              exit 1
+            fi
+            git tag -a "$tag" -m "Release $version"
+            tag_refs+=("refs/tags/$tag")
+          done < <(jq -c '.[]' <<< "$RELEASES")
+
+          # Not forced: a branch that moved during the build fails closed with nothing published.
+          git push --atomic origin "${RELEASE_COMMIT}:${EXPECTED_REF}" "${tag_refs[@]}"
+
       - name: Next development iteration and sync PR
+        if: steps.promote.outcome == 'success' || vars.RELEASE_LIFECYCLE == 'delegated'
         env:
           APP_SLUG: ${{ steps.app-token.outputs.app-slug }}
           BASELINE_BRANCH: ${{ github.event.pull_request.base.ref || github.ref_name }}
@@ -919,3 +981,18 @@ jobs:
               --title "Sync release $version to $develop_branch" \
               --body "**Automated pull request** syncing the release cut on \`$BASELINE_BRANCH\` back into \`$develop_branch\`."
           fi
+
+      - name: Discard the release staging ref
+        if: always()
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          STAGING_REF: ${{ needs.prepare-release.outputs.staging_ref }}
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${STAGING_REF:-}" ]]; then
+            exit 0
+          fi
+          gh auth setup-git
+          git push origin ":${STAGING_REF}" || true

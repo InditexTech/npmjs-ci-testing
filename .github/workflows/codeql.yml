@@ -101,13 +101,9 @@ jobs:
         with:
           build-mode: ${{ matrix.build-mode }}
           languages: ${{ matrix.language }}
-          # These three `actions` queries are false positives on the governed lanes: CodeQL propagates a caller's issue_comment/workflow_dispatch triggers through `workflow_call` and cannot evaluate the job-level `if:` guards, yet every flagged site is mitigated in-template (40-hex merge-commit SHA validation, whitelisted bump labels, no PR-head code in privileged jobs); scoped to these rule IDs only.
+          # Release caches are branch-scoped, so a release-core build can never write the default-branch cache.
           config: |
             query-filters:
-              - exclude:
-                  id: actions/untrusted-checkout/critical
-              - exclude:
-                  id: actions/envvar-injection/critical
               - exclude:
                   id: actions/cache-poisoning/poisonable-step
 
