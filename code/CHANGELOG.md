@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.8.0] - 2026-09-04
+
 ### Fixed
 
 - chore: remove drifted managed files so governance can materialize the golden workflows
@@ -82,7 +84,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[Unreleased]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.7.0...HEAD
+[Unreleased]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.8.0...HEAD
+
+[3.8.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.7.0...3.8.0
 
 [3.7.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.6.0...3.7.0
 
