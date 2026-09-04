@@ -24,8 +24,17 @@ jobs:
           GPG_PASSPHRASE: ${{ secrets.CI_GPG_SECRET_KEY_PASSWORD }}
         run: |
           echo "=== Verify secrets are populated ==="
-          [ -n "$GPG_PRIVATE_KEY" ] && echo "CI_GPG_SECRET_KEY: SET" || { echo "::error::CI_GPG_SECRET_KEY is EMPTY"; exit 1; }
-          [ -n "$GPG_PASSPHRASE" ] && echo "CI_GPG_SECRET_KEY_PASSWORD: SET" || echo "::warning::CI_GPG_SECRET_KEY_PASSWORD is EMPTY (key may have no passphrase)"
+          if [ -n "$GPG_PRIVATE_KEY" ]; then
+            echo "CI_GPG_SECRET_KEY: SET"
+          else
+            echo "::error::CI_GPG_SECRET_KEY is EMPTY"
+            exit 1
+          fi
+          if [ -n "$GPG_PASSPHRASE" ]; then
+            echo "CI_GPG_SECRET_KEY_PASSWORD: SET"
+          else
+            echo "::warning::CI_GPG_SECRET_KEY_PASSWORD is EMPTY (key may have no passphrase)"
+          fi
 
           echo ""
           echo "=== Configure gpg-agent and gpg for non-interactive signing ==="
@@ -98,36 +107,38 @@ jobs:
       - name: Summary
         if: always()
         run: |
-          echo "## GPG Signing Test Results" >> "$GITHUB_STEP_SUMMARY"
-          echo "" >> "$GITHUB_STEP_SUMMARY"
-
           UID_LINE=$(gpg --list-secret-keys --with-colons | awk -F: '/^uid:/ {print $10; exit}')
           KEY_ID=$(gpg --list-secret-keys --keyid-format long --with-colons | awk -F: '/^sec:/ {print $5; exit}')
-          echo "### Key Info" >> "$GITHUB_STEP_SUMMARY"
-          echo "- **Identity:** \`$UID_LINE\`" >> "$GITHUB_STEP_SUMMARY"
-          echo "- **Key ID:** \`$KEY_ID\`" >> "$GITHUB_STEP_SUMMARY"
-          echo "" >> "$GITHUB_STEP_SUMMARY"
-
-          if git verify-commit HEAD 2>/dev/null; then
-            echo "- :white_check_mark: Verified commit: **PASS**" >> "$GITHUB_STEP_SUMMARY"
-          else
-            echo "- :x: Verified commit: **FAIL**" >> "$GITHUB_STEP_SUMMARY"
-          fi
-
           TAG_NAME="gpg-test-tag-${{ github.run_number }}"
-          if git verify-tag "$TAG_NAME" 2>/dev/null; then
-            echo "- :white_check_mark: Verified tag: **PASS**" >> "$GITHUB_STEP_SUMMARY"
-          else
-            echo "- :x: Verified tag: **FAIL**" >> "$GITHUB_STEP_SUMMARY"
-          fi
-
           COMMITTER_USER="srvcosoitxtech"
           GITHUB_KEYS=$(gh api "/users/$COMMITTER_USER/gpg_keys" --jq '.[].key_id' 2>/dev/null || echo "")
-          if echo "$GITHUB_KEYS" | grep -q "$KEY_ID"; then
-            echo "- :white_check_mark: GPG key on GitHub ($COMMITTER_USER): **PASS**" >> "$GITHUB_STEP_SUMMARY"
+
+          if git verify-commit HEAD 2>/dev/null; then
+            COMMIT_RESULT="- :white_check_mark: Verified commit: **PASS**"
           else
-            echo "- :x: GPG key on GitHub ($COMMITTER_USER): **NOT FOUND**" >> "$GITHUB_STEP_SUMMARY"
+            COMMIT_RESULT="- :x: Verified commit: **FAIL**"
+          fi
+          if git verify-tag "$TAG_NAME" 2>/dev/null; then
+            TAG_RESULT="- :white_check_mark: Verified tag: **PASS**"
+          else
+            TAG_RESULT="- :x: Verified tag: **FAIL**"
+          fi
+          if echo "$GITHUB_KEYS" | grep -q "$KEY_ID"; then
+            KEY_RESULT="- :white_check_mark: GPG key on GitHub ($COMMITTER_USER): **PASS**"
+          else
+            KEY_RESULT="- :x: GPG key on GitHub ($COMMITTER_USER): **NOT FOUND**"
           fi
 
-          echo "" >> "$GITHUB_STEP_SUMMARY"
-          echo "> No push was performed. All changes are local to the runner." >> "$GITHUB_STEP_SUMMARY"
+          {
+            echo "## GPG Signing Test Results"
+            echo ""
+            echo "### Key Info"
+            echo "- **Identity:** \`$UID_LINE\`"
+            echo "- **Key ID:** \`$KEY_ID\`"
+            echo ""
+            echo "$COMMIT_RESULT"
+            echo "$TAG_RESULT"
+            echo "$KEY_RESULT"
+            echo ""
+            echo "> No push was performed. All changes are local to the runner."
+          } >> "$GITHUB_STEP_SUMMARY"

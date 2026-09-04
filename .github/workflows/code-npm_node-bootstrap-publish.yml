@@ -104,10 +104,12 @@ jobs:
             echo "NPM_TOKEN secret is required for bootstrap publish."
             exit 1
           fi
-          echo "registry=${NPM_REGISTRY}" > /home/runner/.npmrc
-          echo "@inditextech:registry=${NPM_REGISTRY}" >> /home/runner/.npmrc
-          echo "//registry.npmjs.org/:_authToken=${NPM_AUTH}" >> /home/runner/.npmrc
-          echo "always-auth=true" >> /home/runner/.npmrc
+          {
+            echo "registry=${NPM_REGISTRY}"
+            echo "@inditextech:registry=${NPM_REGISTRY}"
+            echo "//registry.npmjs.org/:_authToken=${NPM_AUTH}"
+            echo "always-auth=true"
+          } > /home/runner/.npmrc
       
       - name: NPM / Ensure minimum npm version
         run: |
