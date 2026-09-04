@@ -73,10 +73,16 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          # Read-only lookup of the PR head SHA; issue_comment carries the number, not the head commit.
-          head_sha="$(gh api "repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}" --jq '.head.sha')"
+          # Read-only lookup of the PR head; issue_comment carries the number, not the head commit.
+          head="$(gh api "repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}" --jq '[.head.sha, .head.repo.full_name] | @tsv')"
+          head_sha="$(printf '%s' "$head" | cut -f1)"
+          head_repo="$(printf '%s' "$head" | cut -f2)"
           if [[ -z "$head_sha" || "$head_sha" == "null" ]]; then
             echo "::error title=Unresolved head::Could not resolve the pull request head commit." >&2
+            exit 1
+          fi
+          if [[ "$head_repo" != "$GITHUB_REPOSITORY" ]]; then
+            echo "::error title=Fork head rejected::Snapshot publishing only accepts branches of ${GITHUB_REPOSITORY}; refusing head from ${head_repo}." >&2
             exit 1
           fi
           echo "head_sha=${head_sha}" >> "$GITHUB_OUTPUT"
