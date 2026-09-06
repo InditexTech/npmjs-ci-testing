@@ -2,7 +2,6 @@ name: Scorecard analysis
 permissions: read-all
 on:
   push:
-    # Only the default branch is supported.
     branches: [ 'main' ]
 
 
@@ -11,9 +10,9 @@ jobs:
     name: Scorecard analysis
     runs-on: ubuntu-latest
     permissions:
-      # Needed for actions/checkout to read repository contents
       contents: read
-      # Needed for GitHub OIDC token if publish_results is true
+      issues: read
+      pull-requests: read
       id-token: write
     steps:
       - name: "Checkout code"
@@ -26,16 +25,8 @@ jobs:
         with:
           results_file: results.sarif
           results_format: sarif
-          # Scorecard team runs a weekly scan of public GitHub repos,
-          # see https://github.com/ossf/scorecard#public-data.
-          # Setting `publish_results: true` helps us scale by leveraging your workflow to
-          # extract the results instead of relying on our own infrastructure to run scans.
-          # And it's free for you!
           publish_results: true
 
-      # Upload the results as artifacts (optional). Commenting out will disable
-      # uploads of run results in SARIF format to the repository Actions tab.
-      # https://docs.github.com/en/actions/advanced-guides/storing-workflow-data-as-artifacts
       - name: "Upload artifact"
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:

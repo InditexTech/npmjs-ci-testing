@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Grant `contents: read` to the Scorecard analysis job's permissions so `actions/checkout` can fetch the repository
+- Grant `issues: read` and `pull-requests: read` to the Scorecard analysis job's permissions. `ossf/scorecard-action@f49aabe0b5af0936a0987cfb85d86b75731b0186` (v2.4.1, pinned) forwards the job's default `GITHUB_TOKEN` to `ossf/scorecard@v5.1.1`, whose single combined GraphQL query (`clients/githubrepo/graphql.go`, backing both `ListCommits()` and `ListIssues()`) reads `repository.object.history.nodes.associatedPullRequests` (with nested `reviews`/`labels`) and `repository.issues` (with nested `comments`) in one request. With only `contents: read` + `id-token: write` at job level, GitHub rejected that query with `Resource not accessible by integration`; the two added scopes are the minimal set the pinned source requires
 
 ## [3.8.0] - 2026-09-04
 
