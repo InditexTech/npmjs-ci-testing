@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Grant `contents: read` to the Scorecard analysis job's permissions so `actions/checkout` can fetch the repository
+
 ## [3.8.0] - 2026-09-04
 
 ### Fixed
