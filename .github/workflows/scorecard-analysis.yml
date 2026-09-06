@@ -11,6 +11,8 @@ jobs:
     name: Scorecard analysis
     runs-on: ubuntu-latest
     permissions:
+      # Needed for actions/checkout to read repository contents
+      contents: read
       # Needed for GitHub OIDC token if publish_results is true
       id-token: write
     steps:
