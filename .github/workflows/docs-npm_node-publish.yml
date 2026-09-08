@@ -89,10 +89,12 @@ jobs:
           NPM_AUTH: ${{ secrets.NPM_TOKEN }}
           NPM_REGISTRY: "https://registry.npmjs.org/"
         run: |
-          echo "registry=${NPM_REGISTRY}" >> /home/runner/.npmrc
-          echo "@inditextech:registry=${NPM_REGISTRY}" >> /home/runner/.npmrc
-          echo "//registry.npmjs.org/:_authToken=${NPM_AUTH}" >> /home/runner/.npmrc
-          echo "always-auth=true" >> /home/runner/.npmrc
+          {
+            echo "registry=${NPM_REGISTRY}"
+            echo "@inditextech:registry=${NPM_REGISTRY}"
+            echo "//registry.npmjs.org/:_authToken=${NPM_AUTH}"
+            echo "always-auth=true"
+          } >> /home/runner/.npmrc
 
       - name: NPM / Create Cache Folders
         run: |
