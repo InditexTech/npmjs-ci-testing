@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.8.1] - 2026-09-11
+
 ### Fixed
 
 - Grant `contents: read` to the Scorecard analysis job's permissions so `actions/checkout` can fetch the repository
@@ -88,7 +90,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[Unreleased]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.8.0...HEAD
+[Unreleased]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.8.1...HEAD
+
+[3.8.1]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.8.0...3.8.1
 
 [3.8.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.7.0...3.8.0
 
