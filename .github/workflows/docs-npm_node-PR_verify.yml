@@ -10,6 +10,9 @@ on:
     paths:
       - "docs/**"
 
+permissions:
+  contents: read
+
 jobs:
   unit-tests:
     name: Docs / Verify
@@ -19,13 +22,13 @@ jobs:
       ASDF_BRANCH_VERSION: 0.18.0
     steps:
       - name: Checkout / Branch Head
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.sha }}
 
       - name: NPM / Setup Dependencies Cache
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('docs/package-lock.json') }}
@@ -33,7 +36,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: asdf / Setup Dependencies Cache
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         id: asdf-cache
         with:
           path: ~/.asdf
