@@ -7,13 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Changed
-
-- Update the canary's development dependencies and pin ungoverned workflow actions.
-- Remove local workflows that are outside the governed CI template contract.
-
-## [3.8.2] - 2026-09-16
-
 ## [3.8.1] - 2026-09-11
 
 ### Fixed
@@ -97,9 +90,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[Unreleased]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.8.2...HEAD
-
-[3.8.2]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.8.1...3.8.2
+[Unreleased]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.8.1...HEAD
 
 [3.8.1]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.8.0...3.8.1
 
