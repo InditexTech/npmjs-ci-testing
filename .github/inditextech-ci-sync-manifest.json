@@ -1,5 +1,9 @@
 {
   "configuration": {
+    "branch_roles": {
+      "development_branch": "develop",
+      "release_branch": "main"
+    },
     "development_flow": "git-flow",
     "outputs": [
       "publish"
@@ -19,7 +23,7 @@
   "creation_year": 2026,
   "integrity": {
     "algorithm": "hmac-sha256",
-    "signature": "29e22b2a913943b1b920d8fc0c58ab43c919ceb473dd1ba700de1265d401b940"
+    "signature": "a13483032d6c03616d086c7b4df29f968f75ceb53ec75974ad62b0cbcddbfb04"
   },
   "managed_by": "InditexTech CI governance",
   "managed_paths": {
@@ -29,16 +33,16 @@
     ".github/ISSUE_TEMPLATE/config.yml": "10e5dee4d49aa9e7792ceb4c986160c61f95da1ba00a64bf06e5f1f636cd17ec",
     ".github/PULL_REQUEST_TEMPLATE.md": "23a0b0ac79a9020ccac9c013582a01f86e2df2ae7f914673583b9a3368313041",
     ".github/inditextech-ci-node.json": "96b4751c753113abba782d5c35efcb1115fbead51c9f26c1fb658957b3c3e230",
-    ".github/workflows/code-npm_node-PR_verify.yml": "29f72ba6e742fc56255f13d27ce650d6ccb2e184d9e2d9647e7c677220b90147",
-    ".github/workflows/code-npm_node-publish-release-and-snapshot.yml": "57a79a887e06653304bb5ae5e3bb69e8ef4f8a58ad83121574fb38352bbb5a83",
-    ".github/workflows/code-npm_node-release-core.yml": "00cba6f2b10e7e8a2b31bce8b6eeca44e7c833cc428d5f07027a7ef96b20e74d",
-    ".github/workflows/code-npm_node-sonarcloud-analysis.yml": "eb2308220b035b522fe3f6c4578bd2beaea5b180a4e242a78dfdb5e6f24d62b1",
-    ".github/workflows/code-release_preview.yml": "6222022149ea98df153afac623e1ecb5031f61607bcfda665058275e28c408f7",
-    ".github/workflows/codeql.yml": "b683306bcff9ba5a53beaf0e4ebf37bd932fcbf031ff03c9130e47041c021ede",
-    ".github/workflows/pr-verify.yml": "f52295fbfe81578c0a6459d8b384be569933ac78d32fff370932a8dec6943e46",
-    ".github/workflows/push-verify.yml": "fd700ba0ee23fdee9cd7ecf23ad386247f4b621b73cc1946f9ef0eda4ea07086",
-    ".github/workflows/scorecard-analysis.yml": "5bd6da647f708cced5d33411cc27aac7f7ee2be06ae541defea677d70fe80481",
-    ".github/workflows/sync-to-develop.yml": "5c35cf0b946a939d0324b1530a78e319e979f993bd1f0105e64fc4478395d8d7",
+    ".github/workflows/code-npm_node-PR_verify.yml": "89e11bc8aae9ec44ab47222cc570c27dffb8b426e88665598ea7065a9cc95d54",
+    ".github/workflows/code-npm_node-publish-release-and-snapshot.yml": "9b9de7bf2f53cfad5c2ab1bc76443844d4aa8958089bf1288f8d35031d55095e",
+    ".github/workflows/code-npm_node-release-core.yml": "3b409b668d51f67bb683b56905d314fd807de32f4f4c46555ce9de4cb3bc3c73",
+    ".github/workflows/code-npm_node-sonarcloud-analysis.yml": "70c1c21825cde574d4744b308e198d030dbabddaa0f8ba07980be253ea6d7afa",
+    ".github/workflows/code-release_preview.yml": "4e2e95d60a498eb12d97ba5c8330b1173f04b02c807140beddad06a6e225b166",
+    ".github/workflows/codeql.yml": "fcfd5d629157760bcc5666b5193ed01223ab82e176f19844eaef7016278168be",
+    ".github/workflows/pr-verify.yml": "dfcff10f7b2ff38a112ea4051e79462f4f2c6ad1a82035db3145327e79a34fbb",
+    ".github/workflows/push-verify.yml": "49e6e9c6a7015ea59a2bc831982b2fc4bfd1d5721302f6041170b4a15b7d56e1",
+    ".github/workflows/scorecard-analysis.yml": "b45c2a0f87801796cefb4363d9f1414891b0734bc07de3f50d4a880e22faea10",
+    ".github/workflows/sync-to-develop.yml": "2f80696aeb3aa35a47944535539ca1887a8cea0cf11dd62e1a103497aa395acc",
     "CODE_OF_CONDUCT.md": "ce1e7a8f68a7917d48c03f9f7aae5529367f73af0e959276e889d33ea1e8d4ab",
     "CONTRIBUTING.md": "4e1264ca54a45df44b362c7533f0eba912bfa77b6f561121ae9e5e9d6aa00df3",
     "SECURITY.md": "0ee7a3356bc3a1c7649e3b7a6a9012b0608011be2b1ff8d106ad02c8950bab25",
@@ -46,6 +50,8 @@
   },
   "managed_variables": {
     "DEVELOPMENT_FLOW": "git-flow",
+    "GIT_FLOW_DEVELOPMENT_BRANCH": "develop",
+    "GIT_FLOW_RELEASE_BRANCH": "main",
     "PROJECT_TYPE": "workspaces",
     "WORKING_DIRECTORY": "code"
   },
@@ -54,7 +60,7 @@
   "retained_paths": {},
   "schema_version": 2,
   "source_digests": {
-    "base": "5070fc83e3b1e67ddc4c2463e767ff3d0d364115c6433d2ae0de75afef2e0e63",
-    "node": "abd1067b25d9599097b81ff61ec63b558b3c83c822143bf69fecf7c53ab45c96"
+    "base": "77bf82cf50d017f83cb2c98448f5abd89c838e085a747c1af3569034f6b38997",
+    "node": "d35cb892d1e48292852cdb39e10a31b4583849fd4aeb71c2e4434c7e37c4e82e"
   }
 }
