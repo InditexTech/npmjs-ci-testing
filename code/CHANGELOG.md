@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Update the canary's development dependencies and pin ungoverned workflow actions.
+- Remove local workflows that are outside the governed CI template contract.
 
 ## [3.8.2] - 2026-09-16
 
