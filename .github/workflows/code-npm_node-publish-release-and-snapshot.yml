@@ -288,7 +288,15 @@ jobs:
 
   release-core:
     name: Prepare and Build Release
-    if: github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request'
+    if: >-
+      (github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request') &&
+      (
+        github.event_name != 'issue_comment' ||
+        contains(
+          fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'),
+          github.event.comment.author_association
+        )
+      )
     uses: ./.github/workflows/code-npm_node-release-core.yml
     with:
       release_type: ${{ inputs.release_type }}
