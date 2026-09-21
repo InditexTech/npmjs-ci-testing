@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- CI: group `github/codeql-action` dependabot bumps so `init`/`analyze` move together.
+
+### Changed
+
 - Update the canary's development dependencies and pin ungoverned workflow actions.
 - Remove local workflows that are outside the governed CI template contract.
 
