@@ -23,7 +23,7 @@
   "creation_year": 2026,
   "integrity": {
     "algorithm": "hmac-sha256",
-    "signature": "541d4b0a6e083978aea621dcc7ca969b661692b4f6cd16ab30c9a838fb791e0c"
+    "signature": "7942ad26def212e0de9effab1254995c3f426e05a89eefddff1bd48e3e9613bf"
   },
   "managed_by": "InditexTech CI governance",
   "managed_paths": {
@@ -39,8 +39,8 @@
     ".github/workflows/code-npm_node-sonarcloud-analysis.yml": "1a4227164d591980b02baddcc0814b735013b162d70cc3909401687287119b5e",
     ".github/workflows/code-release_preview.yml": "4e2e95d60a498eb12d97ba5c8330b1173f04b02c807140beddad06a6e225b166",
     ".github/workflows/codeql.yml": "94084661946332025fbc91374dba51e0c82ab53f95de717c491ba63f384fad75",
-    ".github/workflows/pr-verify.yml": "dfcff10f7b2ff38a112ea4051e79462f4f2c6ad1a82035db3145327e79a34fbb",
-    ".github/workflows/push-verify.yml": "49e6e9c6a7015ea59a2bc831982b2fc4bfd1d5721302f6041170b4a15b7d56e1",
+    ".github/workflows/pr-verify.yml": "5628d1d93c09cb761602fcfc3857c325e2dc542cadc159a1edad58d1818d0de0",
+    ".github/workflows/push-verify.yml": "643f6905fa30284af4a2eabac752293b2e785a5e82449bb6d97950624386829c",
     ".github/workflows/scorecard-analysis.yml": "b45c2a0f87801796cefb4363d9f1414891b0734bc07de3f50d4a880e22faea10",
     ".github/workflows/sync-to-develop.yml": "2f80696aeb3aa35a47944535539ca1887a8cea0cf11dd62e1a103497aa395acc",
     "CODE_OF_CONDUCT.md": "ce1e7a8f68a7917d48c03f9f7aae5529367f73af0e959276e889d33ea1e8d4ab",
@@ -60,7 +60,7 @@
   "retained_paths": {},
   "schema_version": 2,
   "source_digests": {
-    "base": "77bf82cf50d017f83cb2c98448f5abd89c838e085a747c1af3569034f6b38997",
+    "base": "d0ba4f054c8e0a0d6c828d02718efc01251f7897cfcbe864d3c76ef304dc4a13",
     "node": "e3da36e1dec8bf872c1a80c606537788083e0108c0de0a9a033eb7a7db70b0dc"
   }
 }
