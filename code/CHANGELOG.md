@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
+- CI: stop dependabot from editing governed workflows (prevents managed-file drift freeze).
+
+### Changed
 
 - CI: restore governed npm publish entrypoint with workflow-level `cache-mode: none` (resolves managed-file drift from #79).
 
