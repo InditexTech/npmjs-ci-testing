@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- CI: restore governed npm publish entrypoint with workflow-level `cache-mode: none` (resolves managed-file drift from #79).
+
 - CI: group `github/codeql-action` dependabot bumps so `init`/`analyze` move together.
 
 ### Changed
