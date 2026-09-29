@@ -137,3 +137,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [2.0.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/1.0.0...2.0.0
 
 [1.0.0]: https://github.com/InditexTech/npmjs-ci-testing/releases/tag/1.0.0
+
+### Security
+- Added `.github/CODEOWNERS` with `npmjs-ci-testing-maintainers` as default owners.
