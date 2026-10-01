@@ -7,7 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.8.3] - 2026-10-01
+
 ### Changed
+
 - CI: stop dependabot from editing governed workflows (prevents managed-file drift freeze).
 
 ### Changed
@@ -106,7 +109,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[Unreleased]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.8.2...HEAD
+### Security
+
+- Added `.github/CODEOWNERS` with `npmjs-ci-testing-maintainers` as default owners.
+
+[Unreleased]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.8.3...HEAD
+
+[3.8.3]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.8.2...3.8.3
 
 [3.8.2]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.8.1...3.8.2
 
@@ -137,6 +146,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [2.0.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/1.0.0...2.0.0
 
 [1.0.0]: https://github.com/InditexTech/npmjs-ci-testing/releases/tag/1.0.0
-
-### Security
-- Added `.github/CODEOWNERS` with `npmjs-ci-testing-maintainers` as default owners.
