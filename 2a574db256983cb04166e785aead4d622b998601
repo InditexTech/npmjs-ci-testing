@@ -1,0 +1,19 @@
+code/CHANGELOG.md
+  s_189ac63a888bc2::t_8a8314f5325970 140-142
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2a574db256983cb04166e785aead4d622b998601",
+  "prompts": {},
+  "sessions": {
+    "s_189ac63a888bc2": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "f534e528-7410-4c91-b832-76c326786e12",
+        "model": "zai-org/GLM-5.3-Flash"
+      },
+      "human_author": "amagan <andreamr@ext.zara.com>"
+    }
+  }
+}
