@@ -1,0 +1,21 @@
+.github/workflows/code-npm_node-publish-release-and-snapshot.yml
+  s_16ad186f2d3033::t_8f737732b23101 149-152,327-328,657-663
+.github/workflows/scorecard-analysis.yml
+  s_16ad186f2d3033::t_ab54a59807f078 69,101
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e867eda23f797536ee0a79c31c51052c09b5e8c7",
+  "prompts": {},
+  "sessions": {
+    "s_16ad186f2d3033": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5a417566-bd6c-4a91-96b8-a5f32ac707af",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Ivan Alvarez Sabin <ivanasabi@ext.inditex.com>"
+    }
+  }
+}
