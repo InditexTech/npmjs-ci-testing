@@ -23,7 +23,7 @@
   "creation_year": 2026,
   "integrity": {
     "algorithm": "hmac-sha256",
-    "signature": "eb81a2868e99ea654158a7753bb4087e15d4a5f6bd6c53487615a003111e2e85"
+    "signature": "df1f5529e269426145f46a7ec884a17e05e6cd7a0c08ee93f094a35877d32580"
   },
   "managed_by": "InditexTech CI governance",
   "managed_paths": {
@@ -34,7 +34,7 @@
     ".github/PULL_REQUEST_TEMPLATE.md": "23a0b0ac79a9020ccac9c013582a01f86e2df2ae7f914673583b9a3368313041",
     ".github/inditextech-ci-node.json": "96b4751c753113abba782d5c35efcb1115fbead51c9f26c1fb658957b3c3e230",
     ".github/workflows/code-npm_node-PR_verify.yml": "2d4430d765f4a7539ae64fc75cb8254cc09fdcaa7a2a805faada3865887262ce",
-    ".github/workflows/code-npm_node-publish-release-and-snapshot.yml": "adf500b9ac304359d560bbeab1176734c8b34b6571c979d80498a7b49064a8c1",
+    ".github/workflows/code-npm_node-publish-release-and-snapshot.yml": "1f0e14bfb03dd0a00a015fef78418c8add0724d00806107026f52f031ac1bfdb",
     ".github/workflows/code-npm_node-release-core.yml": "32a63cccac1998c00bf06bf5d3877744bb14a0ebd714bb1e4ef253927f5503a8",
     ".github/workflows/code-npm_node-sonarcloud-analysis.yml": "d2fb005c98eb0b68081dcce9611b4cf70e905847119839316fa9034bcac73213",
     ".github/workflows/code-release_preview.yml": "4e2e95d60a498eb12d97ba5c8330b1173f04b02c807140beddad06a6e225b166",
