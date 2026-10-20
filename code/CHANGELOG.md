@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- CI: verify the tag-based Node release version (each package from its own reachable tag, next development version is the next patch).
+
 ## [3.8.3] - 2026-10-01
 
 ### Changed
