@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.9.0] - 2026-10-20
+
+### Changed
+
+- CI: verify the tag-based Node release version (each package from its own reachable tag, next development version is the next patch).
+
 ## [3.8.3] - 2026-10-01
 
 ### Changed
@@ -113,36 +119,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added `.github/CODEOWNERS` with `npmjs-ci-testing-maintainers` as default owners.
 
-[Unreleased]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.8.3...HEAD
+[Unreleased]: https://github.com/InditexTech/npmjs-ci-testing/compare/release-test-core-3.9.0...HEAD
 
-[3.8.3]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.8.2...3.8.3
+[3.9.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/release-test-core-3.8.3...release-test-core-3.9.0
 
-[3.8.2]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.8.1...3.8.2
+[3.8.3]: https://github.com/InditexTech/npmjs-ci-testing/compare/release-test-core-3.8.2...release-test-core-3.8.3
 
-[3.8.1]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.8.0...3.8.1
+[3.8.2]: https://github.com/InditexTech/npmjs-ci-testing/compare/release-test-core-3.8.1...release-test-core-3.8.2
 
-[3.8.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.7.0...3.8.0
+[3.8.1]: https://github.com/InditexTech/npmjs-ci-testing/compare/release-test-core-3.8.0...release-test-core-3.8.1
 
-[3.7.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.6.0...3.7.0
+[3.8.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/release-test-core-3.7.0...release-test-core-3.8.0
 
-[3.6.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.5.0...3.6.0
+[3.7.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/release-test-core-3.6.0...release-test-core-3.7.0
 
-[3.5.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.4.0...3.5.0
+[3.6.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/release-test-core-3.5.0...release-test-core-3.6.0
 
-[3.4.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.3.0...3.4.0
+[3.5.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/release-test-core-3.4.0...release-test-core-3.5.0
 
-[3.3.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.2.0...3.3.0
+[3.4.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/release-test-core-3.3.0...release-test-core-3.4.0
 
-[3.2.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.1.0...3.2.0
+[3.3.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/release-test-core-3.2.0...release-test-core-3.3.0
 
-[3.1.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/3.0.0...3.1.0
+[3.2.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/release-test-core-3.1.0...release-test-core-3.2.0
 
-[3.0.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/2.0.2...3.0.0
+[3.1.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/release-test-core-3.0.0...release-test-core-3.1.0
 
-[2.0.2]: https://github.com/InditexTech/npmjs-ci-testing/compare/2.0.1...2.0.2
+[3.0.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/release-test-core-2.0.2...release-test-core-3.0.0
 
-[2.0.1]: https://github.com/InditexTech/npmjs-ci-testing/compare/2.0.0...2.0.1
+[2.0.2]: https://github.com/InditexTech/npmjs-ci-testing/compare/release-test-core-2.0.1...release-test-core-2.0.2
 
-[2.0.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/1.0.0...2.0.0
+[2.0.1]: https://github.com/InditexTech/npmjs-ci-testing/compare/release-test-core-2.0.0...release-test-core-2.0.1
 
-[1.0.0]: https://github.com/InditexTech/npmjs-ci-testing/releases/tag/1.0.0
+[2.0.0]: https://github.com/InditexTech/npmjs-ci-testing/compare/release-test-core-1.0.0...release-test-core-2.0.0
+
+[1.0.0]: https://github.com/InditexTech/npmjs-ci-testing/releases/tag/release-test-core-1.0.0
