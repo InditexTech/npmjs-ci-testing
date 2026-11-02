@@ -20,8 +20,8 @@
   "author": "InditexTech",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@nx/js": "23.3.0",
-    "nx": "23.3.0"
+    "@nx/js": "23.3.1",
+    "nx": "23.3.1"
   },
   "engines": {
     "node": ">= 22.0.0",
