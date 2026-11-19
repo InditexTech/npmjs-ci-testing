@@ -1,0 +1,19 @@
+.github/workflows/poc-oidc-entry-release.yml
+  s_1e11ebacaedab6::t_5f6663570ac6bd 1-20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "44b11c5dd61510df245b8d53aee4fea7c48ae96b",
+  "prompts": {},
+  "sessions": {
+    "s_1e11ebacaedab6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "755d5517-b54e-44db-986d-c3ce01f421b2",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Ivan Alvarez Sabin <ivanasabi@ext.inditex.com>"
+    }
+  }
+}

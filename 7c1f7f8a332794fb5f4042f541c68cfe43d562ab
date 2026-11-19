@@ -1,0 +1,23 @@
+.github/workflows/code-PR_verify-fallback.yml
+  s_5efe452d324d9d::t_ec30bbc6a701bf 7-9
+.github/workflows/code-npm_node-bootstrap-publish.yml
+  s_5efe452d324d9d::t_7f724e0befcf3b 53,71,78,125
+.github/workflows/docs-npm_node-PR_verify.yml
+  s_5efe452d324d9d::t_2bf495df222f96 13-15,25,31,39
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7c1f7f8a332794fb5f4042f541c68cfe43d562ab",
+  "prompts": {},
+  "sessions": {
+    "s_5efe452d324d9d": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_f55c713f3ffeYs7WKR9x1q9g9A",
+        "model": "kimi-k2.7-code"
+      },
+      "human_author": "Ivan Alvarez Sabin <ivanasabi@ext.inditex.com>"
+    }
+  }
+}

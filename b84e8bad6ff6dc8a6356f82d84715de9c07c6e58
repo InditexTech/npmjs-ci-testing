@@ -1,0 +1,21 @@
+code/package-lock.json
+  s_c1efc9a8f82dbb::t_29af2843aa6008 4961,4970,4973
+code/packages/release-test-utils/package.json
+  s_c1efc9a8f82dbb::t_5ad98ffad9c25d 28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "b84e8bad6ff6dc8a6356f82d84715de9c07c6e58",
+  "prompts": {},
+  "sessions": {
+    "s_c1efc9a8f82dbb": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "15ae5c45-bbba-41a1-ad0a-e336bfe783bc",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Ivan Alvarez Sabin <ivanasabi@ext.inditex.com>"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+.github/dependabot.yml
+  h_e3804906c674bd 14-21
+code/CHANGELOG.md
+  s_ac1a8a8a10c614::t_09f1490d6699ae 12-15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b34ce2a231eac706f6d64209d552e626e36573c0",
+  "prompts": {},
+  "humans": {
+    "h_e3804906c674bd": {
+      "author": "Ivan Alvarez Sabin <ivanasabi@ext.inditex.com>"
+    }
+  },
+  "sessions": {
+    "s_ac1a8a8a10c614": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_f455bd84effePVDv9G35CWPwaJ",
+        "model": "zai-org/GLM-5.3-Flash"
+      },
+      "human_author": "Ivan Alvarez Sabin <ivanasabi@ext.inditex.com>"
+    }
+  }
+}

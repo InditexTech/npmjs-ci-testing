@@ -1,0 +1,24 @@
+code/TEST_STRUCTURE.example.js
+  s_e0c66743ecc73f::t_aa62b805e81e87 1-26
+code/jest.config.js
+  s_e0c66743ecc73f::t_babddd4d7bc92d 1-22
+.github/workflows/code-npm_node-sonarcloud-analysis.yml
+  s_e0c66743ecc73f::t_4af82991183736 1-89,91,93-100,111-117,123-127,129-132,135-142,148-152,154-157,161
+  s_e0c66743ecc73f::t_60a045ba784bb6 90,92,101-110,118-122,128,133-134,143-147,153,158-160
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "874fabc3cd0c2b6c0103c8ee3f22063d2f490e87",
+  "prompts": {},
+  "sessions": {
+    "s_e0c66743ecc73f": {
+      "agent_id": {
+        "tool": "github-copilot-jetbrains",
+        "id": "1781265478470",
+        "model": "unknown"
+      },
+      "human_author": "Adria Berge Aguilar <adriaba@ext.inditex.com>"
+    }
+  }
+}

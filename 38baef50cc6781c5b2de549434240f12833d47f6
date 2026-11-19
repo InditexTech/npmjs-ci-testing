@@ -1,0 +1,24 @@
+code/CHANGELOG.md
+  s_e0c66743ecc73f::t_ad266951aba406 10-12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "38baef50cc6781c5b2de549434240f12833d47f6",
+  "prompts": {},
+  "humans": {
+    "h_3fa2067c00bbfd": {
+      "author": "Adria Berge Aguilar <adriaba@ext.inditex.com>"
+    }
+  },
+  "sessions": {
+    "s_e0c66743ecc73f": {
+      "agent_id": {
+        "tool": "github-copilot-jetbrains",
+        "id": "1781265478470",
+        "model": "unknown"
+      },
+      "human_author": "Adria Berge Aguilar <adriaba@ext.inditex.com>"
+    }
+  }
+}
