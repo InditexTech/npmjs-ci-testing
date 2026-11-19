@@ -1,0 +1,27 @@
+.github/dependabot.yml
+  s_a33363ac23f7fd::t_dab5218b8c1d56 4-6,8,11-49,52-78
+.github/inditextech-ci-sync-manifest.json
+  s_a33363ac23f7fd::t_079ddb7c1b705a 26,35,38,40,42,65
+.github/workflows/code-npm_node-publish-release-and-snapshot.yml
+  s_a33363ac23f7fd::t_28900015086d0f 11,21,34-35,37,59-66,141,254-255
+.github/workflows/code-npm_node-sonarcloud-analysis.yml
+  s_a33363ac23f7fd::t_04af8af35f5340 143-155,157,170
+.github/workflows/codeql.yml
+  s_a33363ac23f7fd::t_c0547c23757870 96,107
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "0f368a485f3fb487927d9ba93a3b8b63e9c3aeb1",
+  "prompts": {},
+  "sessions": {
+    "s_a33363ac23f7fd": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "ec8ef06c-e731-4faf-86d2-19053839b538",
+        "model": "claude-sonnet-5.5"
+      },
+      "human_author": "Ivan Alvarez Sabin <ivanasabi@inditex.com>"
+    }
+  }
+}
