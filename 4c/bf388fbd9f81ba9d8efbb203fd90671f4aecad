@@ -1,0 +1,19 @@
+.github/workflows/code-npm_node-publish-release-and-snapshot.yml
+  s_8de240d6f9ebd8::t_38b1ba0dc874a1 54-56,72-98,118-119,130,156,160-164,334,340,383,602,684
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "4cbf388fbd9f81ba9d8efbb203fd90671f4aecad",
+  "prompts": {},
+  "sessions": {
+    "s_8de240d6f9ebd8": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "7a8eea53-c3f4-4962-a636-5361075ef1e6",
+        "model": "claude-sonnet-5.5"
+      },
+      "human_author": "Ivan Alvarez Sabin <ivanasabi@inditex.com>"
+    }
+  }
+}
